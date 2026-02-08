@@ -47,3 +47,14 @@ def test_third_case() -> None:
     """
 
     assert main(input_str) == "57"
+
+
+def test_ai() -> None:
+    input_str: str = """\
+        3
+    8 45
+    48 2
+    66 24
+    """
+
+    assert main(input_str) == "24"

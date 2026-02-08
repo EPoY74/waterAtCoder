@@ -1,36 +1,3 @@
-# Выход: 3
-input_str: str = """\
-4
-1 3
-3 1
-4 4
-7 1
-"""
-
-# # # Выход 5
-# input_str: str = """\
-# 3
-# 1 8
-# 10 11
-# 21 5
-# """
-
-# # Выход 57
-# input_str: str = """\
-# 10
-# 2 1
-# 22 10
-# 26 17
-# 29 2
-# 45 20
-# 47 32
-# 72 12
-# 75 1
-# 81 31
-# 97 7
-# """
-
-
 def get_data_from_input_str(
     input_val: str,
 ) -> tuple[int, list[tuple[int, int]]]:
@@ -70,18 +37,17 @@ def main(input_data: str) -> str:
     num_water, water = get_data_from_input_str(input_data)
 
     for index, (water_time, water_volume_l) in enumerate(water):
-        d_time = water_time - past_water_time
         if index == 0:
             # d_water = water_volume_l
             current_water_volume_l = water_volume_l
         if index > 0:
-            d_water = max(0, (d_time - (d_water * water_flow_rate)))
+            d_time = water_time - past_water_time
+            if d_time >= current_water_volume_l:
+                current_water_volume_l = 0
+            else:
+                d_water = current_water_volume_l - (d_time * water_flow_rate)
             current_water_volume_l = water_volume_l + d_water
         past_water_time = water_time
 
     print(current_water_volume_l)
     return str(current_water_volume_l)
-
-
-if __name__ == "__main__":
-    main(input_str)

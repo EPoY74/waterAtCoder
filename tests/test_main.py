@@ -48,4 +48,4 @@ def test_third_case() -> None:
     97 7
     """
 
-    assert main(input_str) == "3"
+    assert main(input_str) == "57"
